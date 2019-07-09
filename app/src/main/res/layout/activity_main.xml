@@ -31,13 +31,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lorem"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
 
         <Button
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textColor="@color/colorPureWhite"
                 android:textAlignment="textStart"
                 android:paddingLeft="16dp"
@@ -49,8 +49,8 @@
 
         <Button
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:textSize="24sp"
+                android:layout_height="48dp"
+                android:textSize="22sp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textColor="@color/colorPureWhite"
