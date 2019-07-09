@@ -3,4 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="buttonOrange">#DEA152</color>
+    <color name="colorDarkBrown">#614724</color>
+    <color name="colorBaseBrown">#9C7239</color>
+    <color name="colorLightBrown">#C0A580</color>
+    <color name="colorBackBrown">#E0C9AB</color>
+
+    <color name="colorPureWhite">#FFFFFF</color>
 </resources>
