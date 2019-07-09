@@ -5,6 +5,5 @@
     <string name="tw_sign">Sign In</string>
     <string name="logo_desc">logo Dodge tracker</string>
     <string name="lorem">Dodge tracker Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante
-        dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</string>
+        adipiscing elit. Integer nec odio. Praesent libero.</string>
 </resources>
