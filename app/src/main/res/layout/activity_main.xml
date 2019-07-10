@@ -9,14 +9,19 @@
 
     <ImageView
             android:contentDescription="@string/logo_desc"
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="338dp"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="5dp" />
+            android:id="@+id/imageView"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="5dp" />
 
     <LinearLayout
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -25,17 +30,17 @@
             android:background="@color/colorBackBrown">
 
         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/lorem"
                 android:textSize="18sp"/>
 
         <Button
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textSize="22sp"
                 android:textColor="@color/colorPureWhite"
@@ -49,7 +54,7 @@
 
         <Button
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
