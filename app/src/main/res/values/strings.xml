@@ -2,7 +2,7 @@
     <string name="app_name">DogeTracker</string>
     <string name="but_login">Log In</string>
     <string name="but_out">Without Log In</string>
-    <string name="tw_sign">Sign In</string>
+    <string name="tw_sign">Create Account</string>
     <string name="logo_desc">logo Dodge tracker</string>
     <string name="lorem">Dodge tracker Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Integer nec odio. Praesent libero.
