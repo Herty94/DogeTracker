@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "695906485159",
+    "firebase_url": "https://dogetracker-1562818094101.firebaseio.com",
+    "project_id": "dogetracker-1562818094101",
+    "storage_bucket": "dogetracker-1562818094101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695906485159:android:c0634facc23748af",
+        "android_client_info": {
+          "package_name": "company.locahost.itsc.dogetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695906485159-m1iq59s6aeg90c2f52mgvvv3k0fas2r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "company.locahost.itsc.dogetracker",
+            "certificate_hash": "3d84492160df757d954856e710d2aaedc25664a5"
+          }
+        },
+        {
+          "client_id": "695906485159-0j1786eecimuqnpmlbaa726gqh2gqlcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8HhxpLZE0diD4OsOhsi1zO1BQCQhrcoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695906485159-0j1786eecimuqnpmlbaa726gqh2gqlcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
