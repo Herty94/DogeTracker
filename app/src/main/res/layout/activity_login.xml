@@ -11,21 +11,38 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#77ffffff"
+            android:background="#55FFFFFF"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="16dp">
 
         <EditText android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="124px"
                   android:hint="login"
+                  android:background="#aaffffff"
+
 
                   />
 
         <EditText android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="124px"
                   android:layout_marginTop="16dp"
+                  android:background="#aaffffff"
                   android:hint="Password"/>
+
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Create Account"
+                android:textSize="22dp"
+                android:textColor="@color/colorPureWhite"
+                android:background="@color/buttonOrange"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/b_signin_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"/>
 
 
 
