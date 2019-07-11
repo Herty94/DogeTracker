@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/logo"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="5dp" />
+            tools:layout_editor_absoluteY="5dp"/>
 
     <LinearLayout
             android:layout_marginLeft="8dp"
@@ -39,9 +39,11 @@
                 android:textSize="18sp"/>
 
         <Button
+                android:id="@+id/bt_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                style="@style/BaseButton"
                 android:textSize="22sp"
                 android:textColor="@color/colorPureWhite"
                 android:textAlignment="textStart"
@@ -53,6 +55,7 @@
 
 
         <Button
+                android:id="@+id/b_without"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
@@ -64,6 +67,7 @@
                 android:background="@color/buttonOrange"/>
 
         <TextView
+                android:id="@+id/tw_createac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
