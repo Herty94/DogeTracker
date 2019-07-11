@@ -20,15 +20,15 @@
                   android:layout_height="124px"
                   android:hint="login"
                   android:background="#aaffffff"
-
-
-                  />
+                  android:padding="8dp"
+                />
 
         <EditText android:layout_width="match_parent"
                   android:layout_height="124px"
                   android:layout_marginTop="16dp"
                   android:background="#aaffffff"
-                  android:hint="Password"/>
+                  android:hint="Password"
+                  android:padding="8dp"/>
 
         <Button android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,8 @@
             android:id="@+id/b_signin_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="24dp"
+                />
 
 
 
