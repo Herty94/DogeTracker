@@ -17,7 +17,7 @@
             android:padding="16dp">
 
         <EditText android:layout_width="match_parent"
-                  android:layout_height="42dp"
+                  android:layout_height="124px"
                   android:hint="login"
                   android:background="#aaffffff"
 
@@ -25,7 +25,7 @@
                   />
 
         <EditText android:layout_width="match_parent"
-                  android:layout_height="42dp"
+                  android:layout_height="124px"
                   android:layout_marginTop="16dp"
                   android:background="#aaffffff"
                   android:hint="Password"/>
@@ -41,7 +41,7 @@
         <com.google.android.gms.common.SignInButton
             android:id="@+id/b_signin_google"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"/>
 
 
