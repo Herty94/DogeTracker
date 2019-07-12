@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "695906485159-i48qath1q6uj2rmq3iokru2scbftunpn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "company.locahost.itsc.dogetracker",
+            "certificate_hash": "684c3850271d8d892c958d0afabd1b64917fd8c2"
+          }
+        },
+        {
           "client_id": "695906485159-0j1786eecimuqnpmlbaa726gqh2gqlcs.apps.googleusercontent.com",
           "client_type": 3
         }
