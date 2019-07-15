@@ -7,7 +7,6 @@
     <string name="lorem">Dodge tracker Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Integer nec odio. Praesent libero.
     </string>
-    <string name="but_submit">Submit</string>
     <string name="google_status_fmt"> </string>
     <string name="firebase_status_fmt"> </string>
 </resources>
