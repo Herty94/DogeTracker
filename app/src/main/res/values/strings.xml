@@ -1,12 +1,24 @@
 <resources>
     <string name="app_name">DogeTracker</string>
-    <string name="but_login">Log In</string>
+    <string name="but_login">Skip It</string>
     <string name="but_out">Without Log In</string>
     <string name="tw_sign">Create Account</string>
     <string name="logo_desc">logo Dodge tracker</string>
+    <string name="but_back">Back</string>
+    <string name="but_sub">Submit</string>
+    <string name="ht_pass">Password</string>
+    <string name="ht_log">Login</string>
     <string name="lorem">Dodge tracker Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Integer nec odio. Praesent libero.
     </string>
     <string name="google_status_fmt"> </string>
     <string name="firebase_status_fmt"> </string>
+
+    <!-- Facebook auth secret -->
+
+    <string name="facebook_application_id" translatable="false">1:695906485159:android:c0634facc23748af
+    </string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb1:695906485159:android:c0634facc23748af
+    </string>
+
 </resources>

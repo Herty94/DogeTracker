@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Login"
+        tools:context=".login.Login"
         android:background="@drawable/logo">
 
     <LinearLayout
@@ -18,7 +18,8 @@
 
         <EditText android:layout_width="match_parent"
                   android:layout_height="124px"
-                  android:hint="Login"
+                  android:hint="@string/ht_log"
+                  android:paddingLeft="8dp"
                   android:background="#aaffffff"
 
 
@@ -28,21 +29,52 @@
                   android:layout_height="124px"
                   android:layout_marginTop="16dp"
                   android:background="#aaffffff"
-                  android:hint="Password"/>
+                  android:paddingLeft="8dp"
+                  android:hint="@string/ht_pass"/>
 
-        <Button android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Create Account"
-                android:textSize="22dp"
-                android:textColor="@color/colorPureWhite"
-                android:background="@color/buttonOrange"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="24dp"
+                    android:id="@+id/bt_submit"
+                    android:text="@string/but_back"
+                    android:textSize="22dp"
+                    android:textColor="@color/colorPureWhite"
+                    android:background="#777777"/>
+
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bt_back"
+                    android:layout_weight="3"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/but_sub"
+                    android:textSize="22dp"
+                    android:textColor="@color/colorPureWhite"
+                    android:background="@color/buttonOrange"/>
+
+
+        </LinearLayout>
+
+
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/b_signin_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"/>
+
+        <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="30dp" />
 
 
 

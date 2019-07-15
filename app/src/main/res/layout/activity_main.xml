@@ -17,64 +17,43 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="5dp"/>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="8dp"
-            android:padding="8dp"
             android:background="@color/colorBackBrown">
 
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/lorem"
-                android:textSize="18sp"/>
+                android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp" android:text="@string/lorem"
+                android:textSize="18sp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
                 android:id="@+id/bt_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 style="@style/BaseButton"
-                android:textSize="22sp"
-                android:textColor="@color/colorPureWhite"
-                android:textAlignment="textStart"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:text="@string/but_login"
-
-                android:background="@color/buttonOrange"/>
-
-
-        <Button
-                android:id="@+id/b_without"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="@color/colorPureWhite"
-                android:text="@string/but_out"
-                android:textAlignment="textStart"
-                android:background="@color/buttonOrange"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/buttonOrange"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" android:text="@string/but_login"
+                android:textAlignment="textStart" android:textColor="@color/colorPureWhite"
+                android:textSize="22sp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
 
-        <TextView
-                android:id="@+id/tw_createac"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textColor="#0C76D8"
-                android:text="@string/tw_sign"
-                android:textSize="20sp"/>
 
-    </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
