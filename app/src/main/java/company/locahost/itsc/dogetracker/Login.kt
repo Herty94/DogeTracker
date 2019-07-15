@@ -17,19 +17,17 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-
 class Login : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var signInButton: SignInButton
 
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        signInButton = findViewById(R.id.b_signin_google)
+        val signInButton:SignInButton = findViewById(R.id.bt_signin_google)
 
         signInButton.setOnClickListener(this)
 
@@ -40,33 +38,31 @@ class Login : AppCompatActivity(), View.OnClickListener {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        mAuth = FirebaseAuth.getInstance()
-        Log.d(TAG,"onCreate end")
+        auth = FirebaseAuth.getInstance()
 
 
     }
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser:FirebaseUser? = mAuth.getCurrentUser()
-
+        val currentUser = auth.currentUser
 
     }
-
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
+
+        Log.d(TAG, "firebaseAuthWithGoogle :" + acct.idToken)
         // [START_EXCLUDE silent]
 
 
         // [END_EXCLUDE]
-        Log.d(TAG,"idToken: "+acct.idToken)
+
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        mAuth.signInWithCredential(credential)
+        auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    val user = mAuth.currentUser
+                    val user = auth.currentUser
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -81,7 +77,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
     }
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+            Log.d(TAG,"data: "+data)
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -100,19 +96,21 @@ class Login : AppCompatActivity(), View.OnClickListener {
     }
 
 
+
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
     override fun onClick(v: View) {
         val i = v.id
+        Log.d(TAG,"vid: "+v.id)
         when (i) {
-            R.id.b_signin_google -> signIn()
+            R.id.bt_signin_google -> signIn()
 
         }
     }
     companion object {
-        private const val TAG = "GoogleActivity"
+        private const val TAG = "Login"
         private const val RC_SIGN_IN = 9001
     }
 }
