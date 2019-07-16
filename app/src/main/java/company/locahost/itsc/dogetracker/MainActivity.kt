@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import company.locahost.itsc.dogetracker.login.Login
-import kotlinx.android.synthetic.main.activity_main.*
+import company.locahost.itsc.dogetracker.login.Signin
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         btLogin.setOnClickListener (object: View.OnClickListener {
            override fun onClick(view:View): Unit{
-               val intent = Intent(this@MainActivity, Login::class.java )
+               val intent = Intent(this@MainActivity, Signin::class.java )
                finish()
                startActivity(intent)
            }

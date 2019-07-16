@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.Login"
+        tools:context=".login.Signin"
         android:background="@drawable/logo">
 
     <LinearLayout
@@ -17,20 +17,27 @@
             android:padding="16dp">
 
         <EditText android:layout_width="match_parent"
-                  android:layout_height="124px"
+                  android:layout_height="48dp"
                   android:hint="@string/ht_log"
                   android:paddingLeft="8dp"
-                  android:background="#aaffffff"
-
-
-                  />
+                  android:id="@+id/et_log"
+                  android:background="#aaffffff"/>
 
         <EditText android:layout_width="match_parent"
-                  android:layout_height="124px"
+                  android:layout_height="48dp"
                   android:layout_marginTop="16dp"
                   android:background="#aaffffff"
                   android:paddingLeft="8dp"
+                  android:id="@+id/et_pass"
                   android:hint="@string/ht_pass"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="48dp"
+                  android:layout_marginTop="16dp"
+                  android:id="@+id/et_rpass"
+                  android:background="#aaffffff"
+                  android:paddingLeft="8dp"
+                  android:hint="@string/ht_rpass"/>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -63,7 +70,7 @@
 
 
         <com.google.android.gms.common.SignInButton
-            android:id="@+id/b_signin_google"
+            android:id="@+id/bt_signin_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"/>
@@ -73,8 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="30dp" />
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
 
 
 
