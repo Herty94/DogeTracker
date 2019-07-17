@@ -46,4 +46,11 @@
             android:layout_marginBottom="8dp" android:background="#D89A1F"
             app:layout_constraintBottom_toTopOf="@+id/mapView" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
+    <Button
+            android:id="@+id/bt_signout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="16dp" android:text="SignOut"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -85,13 +85,10 @@ class Signin : AppCompatActivity(), View.OnClickListener {
         mAuth = FirebaseAuth.getInstance()
 
         
-        
+
         // -----------FACEBOOK------------
         callbackManager = CallbackManager.Factory.create()
-
-
-
-
+        //facebook button action
         btFace.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Log.d(TAG, "facebook:onSuccess:$loginResult")
@@ -113,6 +110,42 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
+    override fun onStart() {
+        super.onStart()
+        CheckCurrentUser()
+    }
+    override fun onStop() {
+        super.onStop()
+        ConstantsDT.USER= this.user
+    }
+    private fun passwordVerification():Boolean{
+        if (password == repPassword){
+            Log.i(TAG, "Passwords are matching")
+            return true
+        }
+        else {
+            Log.i(TAG, "Password aren't matching")
+            if (!tvInfo.isVisible)
+                tvInfo.visibility = View.VISIBLE
+            tvInfo.setText("Passwords aren't matching")
+            return false
+        }
+    }
+    private fun CheckCurrentUser(){
+
+        user = mAuth.currentUser
+        if (user != null){
+            Log.i(TAG,"User is signed In "+user)
+            startBaseActivity()
+
+        }else{
+            Log.i(TAG,"No user is signed In")
+        }
+    }
+    private fun startBaseActivity(){
+        startActivity(Intent(this,BaseActivity::class.java))
+    }
+    //authentification methods ->
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d(TAG, "handleFacebookAccessToken:$token")
         // [START_EXCLUDE silent]
@@ -126,6 +159,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     user = mAuth.currentUser
+                    startBaseActivity()
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -142,21 +176,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             }
     }
 
-    override fun onStart() {
-        super.onStart()
-        CheckCurrentUser()
-    }
-    private fun CheckCurrentUser(){
 
-        user = mAuth.currentUser
-        if (user != null){
-            Log.i(TAG,"User is signed In "+user)
-            startActivity(Intent(this,BaseActivity::class.java))
-
-        }else{
-            Log.i(TAG,"No user is signed In")
-        }
-    }
     //custon auth
     private fun craftUserWithEmail(){
         email= etLogin.text.toString()
@@ -169,6 +189,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = mAuth.currentUser
+                        startBaseActivity()
                         // updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -186,67 +207,6 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 }
 
         }
-
-
-    }
-    private fun signinAnonym(){
-    mAuth.signInAnonymously()
-    .addOnCompleteListener(this) { task ->
-        if (task.isSuccessful) {
-            // Sign in success, update UI with the signed-in user's information
-            Log.d(TAG, "signInAnonymously:success")
-            user = mAuth.currentUser
-            Toast.makeText(baseContext,"SignIn Was succesful",Toast.LENGTH_SHORT).show()
-
-        } else {
-            // If sign in fails, display a message to the user.
-            Log.w(TAG, "signInAnonymously:failure", task.exception)
-            Toast.makeText(
-                baseContext, "Authentication failed.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-    }
-
-        // ...
-    }
-    private fun passwordVerification():Boolean{
-        if (password == repPassword){
-            Log.i(TAG, "Passwords are matching")
-            return true
-        }
-        else {
-            Log.i(TAG, "Password aren't matching")
-            if (!tvInfo.isVisible)
-                tvInfo.visibility = View.VISIBLE
-            tvInfo.setText("Passwords aren't matching")
-            return false
-        }
-    }
-    private fun signInWithGoogle() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
-    }
-
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == GOOGLE_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e)
-                // [START_EXCLUDE]
-                // [END_EXCLUDE]
-            }
-        }
     }
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
@@ -261,6 +221,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     user = mAuth.currentUser
+                    startBaseActivity()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -271,6 +232,56 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 // [END_EXCLUDE]
             }
     }
+    private fun signinAnonym(){
+    mAuth.signInAnonymously()
+    .addOnCompleteListener(this) { task ->
+        if (task.isSuccessful) {
+            // Sign in success, update UI with the signed-in user's information
+            Log.d(TAG, "signInAnonymously:success")
+            user = mAuth.currentUser
+            Toast.makeText(baseContext,"SignIn Was succesful",Toast.LENGTH_SHORT).show()
+            startBaseActivity()
+        } else {
+            // If sign in fails, display a message to the user.
+            Log.w(TAG, "signInAnonymously:failure", task.exception)
+            Toast.makeText(
+                baseContext, "Authentication failed.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
+    }
+
+        // ...
+    }
+
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == GOOGLE_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account!!)
+                startBaseActivity()
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e)
+                // [START_EXCLUDE]
+                // [END_EXCLUDE]
+            }
+        }
+    }
+    //on click Listener
     override fun onClick(v: View) {
         val i = v.id
         when (i) {
@@ -278,13 +289,15 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             R.id.bt_submit -> craftUserWithEmail()
             R.id.bt_back -> startActivity(Intent(this, MainActivity::class.java))
             R.id.bt_anon -> signinAnonym()
+
         }
     }
-
-    override fun onStop() {
-        super.onStop()
-        ConstantsDT.USER= this.user
+    public fun signOutFirebase(){
+        mAuth.signOut()
     }
+
+
+
 
 
 }
