@@ -16,6 +16,18 @@
             android:gravity="center"
             android:padding="16dp">
 
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="damn you"
+                  android:id="@+id/tv_info"
+                  android:visibility="invisible"
+                  android:textSize="18sp"
+                  android:padding="8dp"
+                  android:textColor="#f54242"
+                    android:layout_marginBottom="32dp"
+                    android:background="#22f54242"
+                    />
+
         <EditText android:layout_width="match_parent"
                   android:layout_height="48dp"
                   android:hint="@string/ht_log"
@@ -82,8 +94,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:paddingLeft="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"/>
+
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                android:id="@+id/bt_anon"
+                android:text="Anonimous"
+                android:paddingLeft="18dp"
+                android:background="#5dcf00"
+                android:drawableStart="@drawable/ic_person_outline_black_24dp"/>
 
 
 
