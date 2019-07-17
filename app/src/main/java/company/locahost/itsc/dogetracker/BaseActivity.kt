@@ -13,6 +13,6 @@ class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_base)
 
         btLogout = findViewById(R.id.bt_logout)
-        btLogout.setOnClickListener { v -> Signin,logOut() }
+        btLogout.setOnClickListener { }
     }
 }
