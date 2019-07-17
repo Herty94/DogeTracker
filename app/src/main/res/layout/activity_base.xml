@@ -46,4 +46,9 @@
             android:layout_marginBottom="8dp" android:background="#D89A1F"
             app:layout_constraintBottom_toTopOf="@+id/mapView" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
+    <Button
+            android:id="@+id/bt_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="out"
+            tools:layout_editor_absoluteX="314dp" tools:layout_editor_absoluteY="15dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

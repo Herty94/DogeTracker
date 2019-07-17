@@ -151,7 +151,8 @@ class Signin : AppCompatActivity(), View.OnClickListener {
         user = mAuth.currentUser
         if (user != null){
             Log.i(TAG,"User is signed In "+user)
-            startActivity(Intent(this,BaseActivity::class.java))
+            startBaseActivity()
+
 
         }else{
             Log.i(TAG,"No user is signed In")
@@ -169,6 +170,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = mAuth.currentUser
+                        startBaseActivity()
                         // updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -261,6 +263,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     user = mAuth.currentUser
+                    startBaseActivity()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -280,10 +283,17 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             R.id.bt_anon -> signinAnonym()
         }
     }
+    public fun logOut(){
+        mAuth.signOut()
+    }
+    private fun startBaseActivity(){
+        ConstantsDT.USER= this.user
+        startActivity(Intent(this,BaseActivity::class.java))
+    }
 
     override fun onStop() {
         super.onStop()
-        ConstantsDT.USER= this.user
+
     }
 
 

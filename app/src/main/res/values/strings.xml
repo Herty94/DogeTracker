@@ -8,7 +8,7 @@
     <string name="but_sub">Submit</string>
     <string name="ht_pass">Password</string>
     <string name="ht_rpass">Repeat password</string>
-    <string name="ht_log">Login</string>
+    <string name="ht_log">Email</string>
     <string name="lorem">Dodge tracker Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Integer nec odio. Praesent libero.
     </string>
