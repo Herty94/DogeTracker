@@ -17,10 +17,11 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import company.locahost.itsc.dogetracker.MainActivity
 import company.locahost.itsc.dogetracker.R
 
 
-abstract class Signin : AppCompatActivity(), View.OnClickListener {
+class Signin : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var signInButton: SignInButton
@@ -28,6 +29,7 @@ abstract class Signin : AppCompatActivity(), View.OnClickListener {
     private lateinit var etPassword: EditText
     private lateinit var etRepeat: EditText
     private lateinit var btSubmit: Button
+    private lateinit var btBack: Button
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var repPassword: String
@@ -50,8 +52,10 @@ abstract class Signin : AppCompatActivity(), View.OnClickListener {
         etLogin = findViewById(R.id.et_log)
         etPassword = findViewById(R.id.et_pass)
         etRepeat = findViewById(R.id.et_rpass)
-        signInButton = findViewById(R.id.b_signin_google)
+        signInButton = findViewById(R.id.bt_signin_google)
         btSubmit = findViewById(R.id.bt_submit)
+        btBack = findViewById(R.id.bt_back)
+        btBack.setOnClickListener(this)
         btSubmit.setOnClickListener(this)
         signInButton.setOnClickListener(this)
         googleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -67,16 +71,18 @@ abstract class Signin : AppCompatActivity(), View.OnClickListener {
 
         user = mAuth.currentUser
         if (user != null){
-            Log.i(TAG,"User is signed In")
+            Log.i(TAG,"User is signed In"+user)
 
         }else{
             Log.i(TAG,"No user is signed In")
-            TODO("dokončiť uvodnú obrazovku")
         }
     }
     private fun craftUserWithEmail(){
+        email= etLogin.text.toString()
+        password = etPassword.text.toString()
+        repPassword = etRepeat.text.toString()
         if (passwordVerification()) {
-
+            Log.d(TAG,"data"+email+" "+password)
             mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -161,6 +167,7 @@ abstract class Signin : AppCompatActivity(), View.OnClickListener {
         when (i) {
             R.id.bt_signin_google -> signInWithGoogle()
             R.id.bt_submit -> craftUserWithEmail()
+            R.id.bt_back -> startActivity(Intent(this, MainActivity::class.java))
             //R.id.login_button -> fb authentification
         }
     }

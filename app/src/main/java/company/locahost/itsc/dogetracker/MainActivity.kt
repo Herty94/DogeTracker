@@ -1,5 +1,6 @@
 package company.locahost.itsc.dogetracker
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,12 +17,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btLogin.findViewById<Button>(R.id.bt_login)
+        btLogin = findViewById(R.id.bt_login)
 
         btLogin.setOnClickListener (object: View.OnClickListener {
-           override fun onClick(view:View): Unit{
+           override fun onClick(view:View){
                val intent = Intent(this@MainActivity, Signin::class.java )
-               finish()
+
                startActivity(intent)
            }
 

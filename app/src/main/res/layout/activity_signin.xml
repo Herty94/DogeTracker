@@ -29,6 +29,7 @@
                   android:background="#aaffffff"
                   android:paddingLeft="8dp"
                   android:id="@+id/et_pass"
+                  android:inputType="textPassword"
                   android:hint="@string/ht_pass"/>
 
         <EditText android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                   android:id="@+id/et_rpass"
                   android:background="#aaffffff"
                   android:paddingLeft="8dp"
+                  android:inputType="textPassword"
                   android:hint="@string/ht_rpass"/>
 
         <LinearLayout android:layout_width="match_parent"
@@ -47,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginTop="24dp"
-                    android:id="@+id/bt_submit"
+                    android:id="@+id/bt_back"
                     android:text="@string/but_back"
                     android:textSize="22dp"
                     android:textColor="@color/colorPureWhite"
@@ -55,7 +57,7 @@
 
             <Button android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/bt_back"
+                    android:id="@+id/bt_submit"
                     android:layout_weight="3"
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="16dp"
