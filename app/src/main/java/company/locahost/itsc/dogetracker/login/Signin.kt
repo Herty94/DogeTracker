@@ -35,15 +35,24 @@ import company.locahost.itsc.dogetracker.R
 class Signin : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var signInButton: SignInButton
+
+
     private lateinit var tvInfo: TextView
+
+    private var bool: Boolean = false
+
     private lateinit var etLogin: EditText
     private lateinit var etPassword: EditText
     private lateinit var etRepeat: EditText
+
     private lateinit var btSubmit: Button
     private lateinit var btBack: Button
     private lateinit var btAnon: Button
-    private lateinit var btFace: LoginButton
+    private lateinit var btCreateAc: Button
+    private lateinit var signInButton: SignInButton //google button
+    private lateinit var btFace: LoginButton //facebook button
+
+
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var repPassword: String
@@ -66,15 +75,22 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             .requestEmail()
             .build()
 
+        //edit text
         etLogin = findViewById(R.id.et_log)
         etPassword = findViewById(R.id.et_pass)
         etRepeat = findViewById(R.id.et_rpass)
         tvInfo = findViewById(R.id.tv_info)
+
+        // buttons
         signInButton = findViewById(R.id.bt_signin_google)
         btSubmit = findViewById(R.id.bt_submit)
         btBack = findViewById(R.id.bt_back)
+        btCreateAc = findViewById(R.id.bt_createAc)
         btAnon = findViewById(R.id.bt_anon)
         btFace = findViewById(R.id.login_button)
+
+        // buttons on click .. "this -> method line:~300+ onCLick() "
+        btCreateAc.setOnClickListener(this)
         btBack.setOnClickListener(this)
         btSubmit.setOnClickListener(this)
         btAnon.setOnClickListener(this)
@@ -82,9 +98,11 @@ class Signin : AppCompatActivity(), View.OnClickListener {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+
+        // FIREBASE
         mAuth = FirebaseAuth.getInstance()
 
-        
+
 
         // -----------FACEBOOK------------
         callbackManager = CallbackManager.Factory.create()
@@ -114,10 +132,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         CheckCurrentUser()
     }
-    override fun onStop() {
-        super.onStop()
-        ConstantsDT.USER= this.user
-    }
+
     private fun passwordVerification():Boolean{
         if (password == repPassword){
             Log.i(TAG, "Passwords are matching")
@@ -131,21 +146,65 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             return false
         }
     }
+    private fun createAccount(){
+        if(!etRepeat.isVisible || bool==true) {
+            etRepeat.visibility = View.VISIBLE
+            btCreateAc.setText("Sign In With Email")
+
+        }
+        else{
+            etRepeat.visibility = View.GONE
+            btCreateAc.setText("Create Account")
+
+        }
+    }
+    private fun submit(){
+        if(etRepeat.isVisible){
+            craftUserWithEmail()
+        }
+        else{
+            signInWithEmail()
+        }
+    }
+    //USER CHECKER ---------------------------------------->
     private fun CheckCurrentUser(){
 
-        user = mAuth.currentUser
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            // Name, email address, and profile photo Url
+            val name = user.displayName
+            val email = user.email
+            val photoUrl = user.photoUrl
+
+            // Check if user's email is verified
+            val emailVerified = user.isEmailVerified
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            val uid = user.uid
+        }
         if (user != null){
-            Log.i(TAG,"User is signed In "+user)
+            Log.i(TAG,"User is signed In "+user.displayName)
+            if (user.email == null) ConstantsDT.userEmail="Anonym"
+            else ConstantsDT.userEmail = ""+user.email
             startBaseActivity()
+
 
         }else{
             Log.i(TAG,"No user is signed In")
         }
     }
+
+
+    //BASE ACTIVITY STARTER ----------------------------------------------->
     private fun startBaseActivity(){
+
         startActivity(Intent(this,BaseActivity::class.java))
     }
-    //authentification methods ->
+
+    //AUTHENTICATION METHODS -------------------------------------------------------->
+    //---------------------------------------------------------------------facebook auth
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d(TAG, "handleFacebookAccessToken:$token")
         // [START_EXCLUDE silent]
@@ -158,8 +217,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    user = mAuth.currentUser
-                    startBaseActivity()
+                    CheckCurrentUser()
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -177,7 +235,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    //custon auth
+    //-------------------------------------------Custon Auth
     private fun craftUserWithEmail(){
         email= etLogin.text.toString()
         password = etPassword.text.toString()
@@ -188,8 +246,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
-                        val user = mAuth.currentUser
-                        startBaseActivity()
+                        CheckCurrentUser()
                         // updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -208,6 +265,34 @@ class Signin : AppCompatActivity(), View.OnClickListener {
 
         }
     }
+    private fun signInWithEmail(){
+        email= etLogin.text.toString()
+        password = etPassword.text.toString()
+
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    Toast.makeText(this,"SignIn succesfull",Toast.LENGTH_SHORT).show()
+                    CheckCurrentUser()
+
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+
+                // ...
+            }
+    }
+    //--------------------------------------------------------- Google auth
+    private fun signInWithGoogle() {
+          val signInIntent = googleSignInClient.signInIntent
+          startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
+    }
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
         // [START_EXCLUDE silent]
@@ -220,8 +305,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    user = mAuth.currentUser
-                    startBaseActivity()
+                    CheckCurrentUser()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -232,6 +316,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 // [END_EXCLUDE]
             }
     }
+    // ---------------------------------------- Anonym auth
     private fun signinAnonym(){
     mAuth.signInAnonymously()
     .addOnCompleteListener(this) { task ->
@@ -240,7 +325,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             Log.d(TAG, "signInAnonymously:success")
             user = mAuth.currentUser
             Toast.makeText(baseContext,"SignIn Was succesful",Toast.LENGTH_SHORT).show()
-            startBaseActivity()
+            CheckCurrentUser()
         } else {
             // If sign in fails, display a message to the user.
             Log.w(TAG, "signInAnonymously:failure", task.exception)
@@ -255,10 +340,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
         // ...
     }
 
-    private fun signInWithGoogle() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
-    }
+
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -272,7 +354,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
-                startBaseActivity()
+                CheckCurrentUser()
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
@@ -286,9 +368,10 @@ class Signin : AppCompatActivity(), View.OnClickListener {
         val i = v.id
         when (i) {
             R.id.bt_signin_google -> signInWithGoogle()
-            R.id.bt_submit -> craftUserWithEmail()
+            R.id.bt_submit -> submit()
             R.id.bt_back -> startActivity(Intent(this, MainActivity::class.java))
             R.id.bt_anon -> signinAnonym()
+            R.id.bt_createAc -> createAccount()
 
         }
     }

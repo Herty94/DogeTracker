@@ -28,30 +28,31 @@
                     android:background="#22f54242"
                     />
 
-        <EditText android:layout_width="match_parent"
+        <EditText android:id="@+id/et_log"
+                  android:layout_width="match_parent"
                   android:layout_height="48dp"
+                  android:background="#E7E7E7"
                   android:hint="@string/ht_log"
-                  android:paddingLeft="8dp"
-                  android:id="@+id/et_log"
-                  android:background="#aaffffff"/>
+                  android:inputType="textEmailAddress"
+                  android:paddingLeft="8dp"/>
 
-        <EditText android:layout_width="match_parent"
+        <EditText android:id="@+id/et_pass"
+                  android:layout_width="match_parent"
                   android:layout_height="48dp"
                   android:layout_marginTop="16dp"
-                  android:background="#aaffffff"
-                  android:paddingLeft="8dp"
-                  android:id="@+id/et_pass"
+                  android:background="#E7E7E7"
+                  android:hint="@string/ht_pass"
                   android:inputType="textPassword"
-                  android:hint="@string/ht_pass"/>
+                  android:paddingLeft="8dp"/>
 
-        <EditText android:layout_width="match_parent"
+        <EditText android:id="@+id/et_rpass"
+                  android:layout_width="match_parent"
                   android:layout_height="48dp"
                   android:layout_marginTop="16dp"
-                  android:id="@+id/et_rpass"
-                  android:background="#aaffffff"
-                  android:paddingLeft="8dp"
-                  android:inputType="textPassword"
-                  android:hint="@string/ht_rpass"/>
+                  android:visibility="gone"
+                  android:background="#E7E7E7"
+                  android:hint="@string/ht_rpass"
+                  android:inputType="textPassword" android:paddingLeft="8dp"/>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -63,7 +64,7 @@
                     android:layout_marginTop="24dp"
                     android:id="@+id/bt_back"
                     android:text="@string/but_back"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:textColor="@color/colorPureWhite"
                     android:background="#777777"/>
 
@@ -74,12 +75,20 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="16dp"
                     android:text="@string/but_sub"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:textColor="@color/colorPureWhite"
                     android:background="@color/buttonOrange"/>
 
 
         </LinearLayout>
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:id="@+id/bt_createAc"
+                android:background="@color/buttonOrange"
+                android:textColor="@color/colorPureWhite"
+                android:layout_marginTop="24dp"/>
+
 
 
 
@@ -87,7 +96,7 @@
             android:id="@+id/bt_signin_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="16dp"/>
 
         <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
