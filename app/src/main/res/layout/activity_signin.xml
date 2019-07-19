@@ -20,13 +20,12 @@
                   android:layout_height="wrap_content"
                   android:text="damn you"
                   android:id="@+id/tv_info"
-                  android:visibility="invisible"
+                  android:visibility="gone"
                   android:textSize="18sp"
                   android:padding="8dp"
                   android:textColor="#f54242"
-                    android:layout_marginBottom="32dp"
-                    android:background="#22f54242"
-                    />
+                  android:layout_marginBottom="32dp"
+                  android:background="#22f54242"/>
 
         <EditText android:id="@+id/et_log"
                   android:layout_width="match_parent"

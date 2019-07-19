@@ -5,55 +5,59 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".BaseActivity">
+        android:background="@color/colorBackBrown" tools:context=".BaseActivity">
+    <include android:menu
 
     <View
             android:id="@+id/view"
             android:layout_width="0dp" android:layout_height="72dp"
-            android:layout_marginTop="28dp"
-            android:background="#FF9800" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp"
+            android:background="@color/colorBaseBrown" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-            android:id="@+id/button2"
+    <View
+            android:id="@+id/view2"
+            android:layout_width="80dp" android:layout_height="62dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorLightBrown" app:layout_constraintBottom_toTopOf="@+id/vw_tracer"
+            app:layout_constraintEnd_toEndOf="@id/bt_map" app:layout_constraintStart_toStartOf="@id/bt_map"
+            app:layout_constraintTop_toTopOf="@+id/bt_forum"/>
+    <ImageButton
+            android:id="@+id/bt_list"
+            android:layout_width="80dp"
+            android:layout_height="60dp" android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp" android:background="@color/buttonOrange"
+            android:src="@drawable/ic_format_list_bulleted_black_50dp" app:layout_constraintStart_toEndOf="@+id/bt_map"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+            android:id="@+id/bt_forum"
+            android:layout_width="80dp"
+            android:layout_height="60dp" android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp" android:background="@color/buttonOrange"
+            android:src="@drawable/ic_public_black_24dp" app:layout_constraintStart_toEndOf="@+id/bt_list"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+            android:id="@+id/bt_map"
             android:layout_width="80dp"
             android:layout_height="60dp" android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
-            android:text="Button" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-            android:id="@+id/button3"
-            android:layout_width="80dp"
-            android:layout_height="60dp" android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp" android:text="Button"
-            app:layout_constraintStart_toEndOf="@+id/button2" app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-            android:id="@+id/button4"
-            android:layout_width="80dp"
-            android:layout_height="60dp" android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp" android:text="Button"
-            app:layout_constraintStart_toEndOf="@+id/button3" app:layout_constraintTop_toTopOf="parent"/>
-    <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
-            android:layout_width="376dp" android:layout_height="391dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:background="@color/buttonOrange" android:src="@drawable/ic_location_on_black_24dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
     <View
-            android:id="@+id/view2"
-            android:layout_width="371dp" android:layout_height="122dp"
-            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp" android:background="#D89A1F"
-            app:layout_constraintBottom_toTopOf="@+id/mapView" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-    <Button
-            android:id="@+id/bt_signout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="SignOut" app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/vw_back"
+            android:layout_width="411dp" android:layout_height="500dp"
+            android:layout_marginBottom="28dp" android:background="@color/colorLightBrown"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintStart_toStartOf="parent"/>
+    <View
+            android:id="@+id/vw_tracer"
+            android:layout_width="380dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#D89A1F"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vw_back"/>
     <View
             android:id="@+id/view3"
             android:layout_width="411dp" android:layout_height="27dp"
@@ -61,13 +65,28 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            />
+    />
+    <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="378dp"
+            android:layout_height="395dp" android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/vw_tracer"/>
     <TextView
             android:id="@+id/tv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPureWhite"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp" android:text="TextView"
+            android:layout_marginTop="8dp"
+            android:text="Email" android:textColor="@color/colorPureWhite"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="67dp" android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp" android:background=""
+            android:src="@drawable/ic_menu_black_24dp" app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view3"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
