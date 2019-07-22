@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         btLogin.setOnClickListener (object: View.OnClickListener {
            override fun onClick(view:View){
-               val intent = Intent(this@MainActivity, Signin::class.java )
+               val intent = Intent(this@MainActivity, BaseActivity::class.java )
 
                startActivity(intent)
            }

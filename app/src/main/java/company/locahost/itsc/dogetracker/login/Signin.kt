@@ -130,7 +130,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
     }
     override fun onStart() {
         super.onStart()
-        CheckCurrentUser()
+
     }
 
     private fun passwordVerification():Boolean{
@@ -167,40 +167,14 @@ class Signin : AppCompatActivity(), View.OnClickListener {
         }
     }
     //USER CHECKER ---------------------------------------->
-    private fun CheckCurrentUser(){
-
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            // Name, email address, and profile photo Url
-            val name = user.displayName
-            val email = user.email
-            val photoUrl = user.photoUrl
-
-            // Check if user's email is verified
-            val emailVerified = user.isEmailVerified
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            val uid = user.uid
-        }
-        if (user != null){
-            Log.i(TAG,"User is signed In "+user.displayName)
-            if (user.email == null) ConstantsDT.userEmail="Anonym"
-            else ConstantsDT.userEmail = ""+user.email
-            startBaseActivity()
-
-
-        }else{
-            Log.i(TAG,"No user is signed In")
-        }
-    }
 
 
     //BASE ACTIVITY STARTER ----------------------------------------------->
     private fun startBaseActivity(){
+        val intent = Intent(this,BaseActivity::class.java)
+        ConstantsDT.userAuth = mAuth
+        startActivity(intent)
 
-        startActivity(Intent(this,BaseActivity::class.java))
     }
 
     //AUTHENTICATION METHODS -------------------------------------------------------->
@@ -217,8 +191,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    CheckCurrentUser()
-
+                    startBaseActivity()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -246,7 +219,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
-                        CheckCurrentUser()
+                        startBaseActivity()
                         // updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -275,7 +248,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     Toast.makeText(this,"SignIn succesfull",Toast.LENGTH_SHORT).show()
-                    CheckCurrentUser()
+                    startBaseActivity()
 
 
                 } else {
@@ -305,7 +278,8 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    CheckCurrentUser()
+                    startBaseActivity()
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -325,7 +299,8 @@ class Signin : AppCompatActivity(), View.OnClickListener {
             Log.d(TAG, "signInAnonymously:success")
             user = mAuth.currentUser
             Toast.makeText(baseContext,"SignIn Was succesful",Toast.LENGTH_SHORT).show()
-            CheckCurrentUser()
+            startBaseActivity()
+
         } else {
             // If sign in fails, display a message to the user.
             Log.w(TAG, "signInAnonymously:failure", task.exception)
@@ -354,7 +329,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
-                CheckCurrentUser()
+
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
@@ -375,7 +350,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
 
         }
     }
-    public fun signOutFirebase(){
+    fun signOutFirebase(){
         mAuth.signOut()
     }
 
