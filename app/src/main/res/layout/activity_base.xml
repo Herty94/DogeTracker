@@ -25,9 +25,10 @@
     <View
             android:id="@+id/vw_back"
             android:layout_width="414dp" android:layout_height="604dp"
-            android:background="@color/colorLightBrown" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginTop="32dp" android:background="@color/colorLightBrown"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"/>
     <View
             android:id="@+id/vw_tracer"
             android:layout_width="380dp"
@@ -46,7 +47,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"/>
 
-    <com.google.android.gms.maps.MapView
+    <fragment
+            android:name="com.google.android.gms.maps.MapFragment"
             android:id="@+id/mapView"
             android:layout_width="381dp"
             android:layout_height="462dp" android:layout_marginStart="16dp"
@@ -55,6 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vw_tracer" app:layout_constraintVertical_bias="1.0"/>
+
     <TextView
             android:id="@+id/tv_user"
             android:layout_width="wrap_content"
@@ -92,12 +95,6 @@
             app:layout_constraintTop_toBottomOf="@+id/view3" app:srcCompat="@drawable/ic_menu_black_24dp"
             android:onClick="showPopup"/>
 
-    <!-- <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="67dp" android:layout_height="53dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp" android:background=""
-            android:src="@drawable/ic_menu_black_24dp" app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view3"/> -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

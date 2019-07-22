@@ -13,27 +13,55 @@ import android.view.MenuItem
 
 import android.view.View
 import android.widget.PopupMenu
+import com.google.android.gms.maps.*
+import kotlinx.android.synthetic.main.activity_base.view.*
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 
-class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener{
+
+
+
+
+class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener , OnMapReadyCallback{
     private lateinit var signin: Signin
-    private lateinit var btSignOut: Button
     private lateinit var name: String
+    private lateinit var mapFragment: MapFragment
+    private lateinit var googleMap: GoogleMap
     private val TAG = "BaseActivity"
     private lateinit var tvUser: TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         setContentView(R.layout.activity_base)
+
+        if (supportFragmentManager.findFragmentById(R.id.mapView) != null){
+            mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as MapFragment
+           mapFragment.getMapAsync(this)}
+
+
         signin = Signin()
-       // btSignOut= findViewById(R.id.bt_signout)
-       /* btSignOut.setOnClickListener{
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this,Signin::class.java))
-        }*/
         tvUser = findViewById(R.id.tv_user)
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
 
     }
+    override fun onMapReady(map: GoogleMap) {
+        val sydney = LatLng(-33.867, 151.206)
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13f))
+
+        map.addMarker(
+            MarkerOptions()
+                .title("Sydney")
+                .snippet("The most populous city in Australia.")
+                .position(sydney)
+        )
+    }
+
 
     override fun onStart() {
         super.onStart()
@@ -92,4 +120,6 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener{
         else
         return false
     }
+
 }
+
