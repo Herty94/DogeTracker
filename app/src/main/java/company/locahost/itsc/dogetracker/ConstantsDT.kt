@@ -8,4 +8,5 @@ object ConstantsDT {
     lateinit var userName: String
     lateinit var userEmail: String
     lateinit var userAuth: FirebaseAuth
+    val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
 }

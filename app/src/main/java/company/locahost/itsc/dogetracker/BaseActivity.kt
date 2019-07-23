@@ -24,7 +24,7 @@ import com.google.android.gms.maps.GoogleMap
 
 
 
-class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener , OnMapReadyCallback{
+class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private lateinit var signin: Signin
     private lateinit var name: String
     private lateinit var mapFragment: MapFragment
@@ -39,9 +39,7 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener , On
 
         setContentView(R.layout.activity_base)
 
-        if (supportFragmentManager.findFragmentById(R.id.mapView) != null){
-            mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as MapFragment
-           mapFragment.getMapAsync(this)}
+
 
 
         signin = Signin()
@@ -49,18 +47,7 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener , On
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
 
     }
-    override fun onMapReady(map: GoogleMap) {
-        val sydney = LatLng(-33.867, 151.206)
 
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13f))
-
-        map.addMarker(
-            MarkerOptions()
-                .title("Sydney")
-                .snippet("The most populous city in Australia.")
-                .position(sydney)
-        )
-    }
 
 
     override fun onStart() {
