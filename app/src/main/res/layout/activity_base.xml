@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/view3"
             app:layout_constraintVertical_bias="0.113"/>
     <FrameLayout
-            android:id="@+id/vw_back"
+            android:id="@+id/fragment_layout"
             android:layout_width="388dp" android:layout_height="617dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="120dp" android:layout_marginEnd="8dp"
@@ -31,16 +31,6 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view3" app:layout_constraintVertical_bias="0.0">
 
-        <fragment
-                android:id="@+id/fragment"
-                android:name="company.locahost.itsc.dogetracker.fragments.FragmentMap"
-                android:layout_width="372dp"
-                android:layout_height="590dp"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.0"/>
 
     </FrameLayout>
     <View
@@ -60,7 +50,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="Email" android:textColor="@color/colorPureWhite"
+            android:text="@string/ht_log" android:textColor="@color/colorPureWhite"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
     <ImageButton
             android:id="@+id/bt_forum"

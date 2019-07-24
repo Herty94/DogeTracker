@@ -20,7 +20,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyBXNJRG3KTa42zEIfTzXxlpD9p6nmRDIwg"/>
+                android:value="@string/google_api_key"/>
         <activity android:name=".BaseActivity">
 
         </activity>

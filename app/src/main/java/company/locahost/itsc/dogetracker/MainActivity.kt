@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private var LocationPermission : Boolean = false
+
     private lateinit var btLogin: Button
 
 
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         btLogin.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 val intent = Intent(this@MainActivity, BaseActivity::class.java)
-
+                finish()
                 startActivity(intent)
             }
 

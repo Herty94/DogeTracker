@@ -13,15 +13,14 @@ import android.view.MenuItem
 
 import android.view.View
 import android.widget.PopupMenu
+import androidx.fragment.app.FragmentManager
 import com.google.android.gms.maps.*
 import kotlinx.android.synthetic.main.activity_base.view.*
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-
-
-
+import company.locahost.itsc.dogetracker.fragments.FragmentMap
 
 
 class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
@@ -35,8 +34,6 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(R.layout.activity_base)
 
 
@@ -45,7 +42,18 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         signin = Signin()
         tvUser = findViewById(R.id.tv_user)
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
+        createFragment()
 
+    }
+    private fun createFragment(){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        val newFragment = FragmentMap()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_layout, newFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 
@@ -76,9 +84,6 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             // Check if user's email is verified
             val emailVerified = user.isEmailVerified
 
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
             val uid = user.uid
         }
         if (user != null){

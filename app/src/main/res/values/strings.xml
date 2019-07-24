@@ -9,6 +9,7 @@
     <string name="ht_pass">Password</string>
     <string name="ht_rpass">Repeat password</string>
     <string name="ht_log">Email</string>
+    <string name="bt_anonym">Anonymous Sign in</string>
     <string name="lorem">Dodge tracker Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Integer nec odio. Praesent libero.
     </string>

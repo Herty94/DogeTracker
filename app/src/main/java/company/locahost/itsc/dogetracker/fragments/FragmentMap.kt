@@ -1,44 +1,40 @@
 package company.locahost.itsc.dogetracker.fragments
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import company.locahost.itsc.dogetracker.ConstantsDT
-
-import android.content.pm.PackageManager
-import android.Manifest.permission
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import androidx.core.app.ActivityCompat
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.R
 import company.locahost.itsc.dogetracker.ConstantsDT.MAPVIEW_BUNDLE_KEY
 
 
-class FragmentMap : Fragment() , OnMapReadyCallback {
+class FragmentMap : Fragment(), OnMapReadyCallback {
 
 
     private lateinit var mMapView: MapView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view:View = inflater.inflate(company.locahost.itsc.dogetracker.R.layout.fragmen_menu_layout,container,false)
+        val view: View =
+            inflater.inflate(company.locahost.itsc.dogetracker.R.layout.fragmen_menu_layout, container, false)
 
         var mapViewBundle: Bundle? = null
-        if (savedInstanceState != null){
-                mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY)
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY)
         }
-            mMapView = view.findViewById(company.locahost.itsc.dogetracker.R.id.mapView)
-            mMapView.onCreate(mapViewBundle)
-            mMapView.getMapAsync(this)
+        mMapView = view.findViewById(company.locahost.itsc.dogetracker.R.id.mapView)
+        mMapView.onCreate(mapViewBundle)
+        mMapView.getMapAsync(this)
 
 
         return view
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
@@ -74,16 +70,11 @@ class FragmentMap : Fragment() , OnMapReadyCallback {
                 activity!!, Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return
         }
         map.isMyLocationEnabled = true
+
     }
 
     override fun onPause() {
