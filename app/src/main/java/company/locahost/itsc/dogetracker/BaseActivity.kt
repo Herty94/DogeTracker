@@ -2,7 +2,6 @@ package company.locahost.itsc.dogetracker
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -12,24 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapFragment
 import com.google.firebase.auth.FirebaseAuth
+import company.locahost.itsc.dogetracker.fragments.FragmentList
 import company.locahost.itsc.dogetracker.fragments.FragmentMap
 import company.locahost.itsc.dogetracker.login.Signin
-import kotlinx.android.synthetic.main.fragmen_menu_layout.*
-import android.content.ComponentName
-import androidx.core.app.BundleCompat.getBinder
-import android.os.IBinder
-import android.content.ServiceConnection
-import android.location.Location
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import com.google.android.gms.common.data.DataBufferObserver
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
-import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.activity_base.*
 
 
-class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
+class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, View.OnClickListener {
     private lateinit var signin: Signin
     private lateinit var name: String
     private lateinit var mapFragment: MapFragment
@@ -40,31 +28,37 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private lateinit var tvUser: TextView
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
 
 
-
+        bt_list.setOnClickListener(this)
+        bt_map.setOnClickListener(this)
 
         signin = Signin()
         tvUser = findViewById(R.id.tv_user)
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
-        createFragment()
+        createFragment(FragmentMap.TAG)
 
 
     }
 
 
-    private fun createFragment() {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        val newFragment = FragmentMap()
+    private fun createFragment(tag: String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_layout, newFragment)
-        transaction.addToBackStack(null)
+        when (tag) {
+            FragmentMap.TAG -> {
+                transaction.replace(R.id.fragment_layout, FragmentMap())
+
+            }
+            FragmentList.TAG -> {
+                transaction.replace(R.id.fragment_layout, FragmentList())
+
+            }
+        }
+
+
         transaction.commit()
     }
 
@@ -122,6 +116,16 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             }
         } else
             return false
+    }
+
+    override fun onClick(view: View) {
+
+        when (view.id) {
+            R.id.bt_map -> createFragment(FragmentMap.TAG)
+            R.id.bt_list -> createFragment(FragmentList.TAG)
+
+        }
+
     }
 
 

@@ -18,15 +18,19 @@ import company.locahost.itsc.dogetracker.ConstantsDT.MAPVIEW_BUNDLE_KEY
 
 class FragmentMap : Fragment(), OnMapReadyCallback {
 
-    private val TAG = "FragmentMap"
+
     var aLat: Double = 0.0
     var aLon: Double = 0.0
 
     private lateinit var mMapView: MapView
 
+    companion object{
+        val TAG = "FragmentMap"
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View =
-            inflater.inflate(company.locahost.itsc.dogetracker.R.layout.fragmen_menu_layout, container, false)
+            inflater.inflate(company.locahost.itsc.dogetracker.R.layout.fragment_menu_layout, container, false)
 
         var mapViewBundle: Bundle? = null
         if (savedInstanceState != null) {
@@ -79,8 +83,7 @@ class FragmentMap : Fragment(), OnMapReadyCallback {
             return
         }
         map.isMyLocationEnabled = true
-        aLat = map.myLocation.latitude
-        aLon = map.myLocation.longitude
+
 
         map.setOnMapLongClickListener {
             map.clear()
