@@ -1,26 +1,32 @@
 package company.locahost.itsc.dogetracker
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
-import com.google.firebase.auth.FirebaseAuth
-import company.locahost.itsc.dogetracker.login.Signin
-import android.view.Menu
 import android.view.MenuItem
-
 import android.view.View
 import android.widget.PopupMenu
-import androidx.fragment.app.FragmentManager
-import com.google.android.gms.maps.*
-import kotlinx.android.synthetic.main.activity_base.view.*
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.CameraUpdateFactory
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapFragment
+import com.google.firebase.auth.FirebaseAuth
 import company.locahost.itsc.dogetracker.fragments.FragmentMap
+import company.locahost.itsc.dogetracker.login.Signin
+import kotlinx.android.synthetic.main.fragmen_menu_layout.*
+import android.content.ComponentName
+import androidx.core.app.BundleCompat.getBinder
+import android.os.IBinder
+import android.content.ServiceConnection
+import android.location.Location
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import com.google.android.gms.common.data.DataBufferObserver
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import java.util.concurrent.TimeUnit
 
 
 class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
@@ -29,7 +35,10 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private lateinit var mapFragment: MapFragment
     private lateinit var googleMap: GoogleMap
     private val TAG = "BaseActivity"
+
+
     private lateinit var tvUser: TextView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +53,11 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
         createFragment()
 
+
     }
-    private fun createFragment(){
+
+
+    private fun createFragment() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
@@ -57,22 +69,21 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     }
 
 
-
     override fun onStart() {
         super.onStart()
         checkCurrentUser()
 
     }
 
-    public fun showPopup(v: View) {
-        var popup = PopupMenu(this , v)
+    fun showPopup(v: View) {
+        var popup = PopupMenu(this, v)
         popup.setOnMenuItemClickListener(this)
         popup.inflate(R.menu.base_menu)
         popup.show()
 
     }
 
-    private fun checkCurrentUser(){
+    private fun checkCurrentUser() {
 
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
@@ -86,32 +97,33 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
             val uid = user.uid
         }
-        if (user != null){
-            Log.i(TAG,"User is signed In "+user.displayName)
-            if (user.email == null) ConstantsDT.userEmail="Anonym"
-            else ConstantsDT.userEmail = ""+user.email
+        if (user != null) {
+            Log.i(TAG, "User is signed In " + user.displayName)
+            if (user.email == null) ConstantsDT.userEmail = "Anonym"
+            else ConstantsDT.userEmail = "" + user.email
             tvUser.setText(ConstantsDT.userEmail)
 
 
-
-        }else{
+        } else {
             startActivity(Intent(this, Signin::class.java))
         }
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item != null) {
-            when(item.itemId){
-                R.id.mn_logout -> { ConstantsDT.userAuth.signOut()
+            when (item.itemId) {
+                R.id.mn_logout -> {
+                    ConstantsDT.userAuth.signOut()
                     checkCurrentUser()
-                    return true}
+                    return true
+                }
 
                 else -> return false
             }
-        }
-        else
-        return false
+        } else
+            return false
     }
+
 
 }
 

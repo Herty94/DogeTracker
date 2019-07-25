@@ -3,6 +3,7 @@ package company.locahost.itsc.dogetracker.fragments
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,15 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.MarkerOptions
 import company.locahost.itsc.dogetracker.ConstantsDT.MAPVIEW_BUNDLE_KEY
 
 
 class FragmentMap : Fragment(), OnMapReadyCallback {
 
+    private val TAG = "FragmentMap"
+    var aLat: Double = 0.0
+    var aLon: Double = 0.0
 
     private lateinit var mMapView: MapView
 
@@ -74,6 +79,19 @@ class FragmentMap : Fragment(), OnMapReadyCallback {
             return
         }
         map.isMyLocationEnabled = true
+        aLat = map.myLocation.latitude
+        aLon = map.myLocation.longitude
+
+        map.setOnMapLongClickListener {
+            map.clear()
+            map.addMarker(
+                MarkerOptions()
+                    .position(it)
+                    .title(it.longitude.toString() + " " + it.latitude.toString())
+                    .draggable(true)
+            )
+        }
+        Log.i(TAG, "Map is created")
 
     }
 
