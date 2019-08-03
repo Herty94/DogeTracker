@@ -1,6 +1,8 @@
 package company.locahost.itsc.dogetracker
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -8,8 +10,8 @@ import android.view.View
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapFragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import company.locahost.itsc.dogetracker.fragments.FragmentList
 import company.locahost.itsc.dogetracker.fragments.FragmentMap
@@ -19,13 +21,19 @@ import kotlinx.android.synthetic.main.activity_base.*
 
 class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, View.OnClickListener {
     private lateinit var signin: Signin
-    private lateinit var name: String
-    private lateinit var mapFragment: MapFragment
-    private lateinit var googleMap: GoogleMap
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+
     private val TAG = "BaseActivity"
 
 
     private lateinit var tvUser: TextView
+
+    private  var locationUpdate: Boolean = false
+
+    private  var oldLocation: Location? = null
+    private  var newLocation: Location? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +49,25 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
         createFragment(FragmentMap.TAG)
 
+
+        checkForLocation()
+
+    }
+    @SuppressLint("MissingPermission")
+    private fun checkForLocation(){
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+
+
+        if (newLocation == null) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+
+                    newLocation = location
+
+                }
+        }
+        else{}
 
     }
 

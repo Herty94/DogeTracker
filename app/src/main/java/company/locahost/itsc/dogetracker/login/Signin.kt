@@ -350,9 +350,7 @@ class Signin : AppCompatActivity(), View.OnClickListener {
 
         }
     }
-    fun signOutFirebase(){
-        mAuth.signOut()
-    }
+
 
 
 
