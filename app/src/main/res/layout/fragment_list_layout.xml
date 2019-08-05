@@ -5,13 +5,15 @@
               android:background="@color/colorBackBrown"
               android:orientation="vertical">
 
-    <ImageButton android:layout_width="match_parent" android:layout_height="40dp"
-                 android:layout_margin="16dp"
+    <ImageButton android:layout_width="match_parent" android:layout_height="46dp"
+                 android:layout_margin="8dp"
+                 android:id="@+id/ib_addog"
                  android:background="@color/buttonOrange"
                  android:src="@drawable/ic_add_black_24dp"/>
     <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:id="@+id/lw_dogs"/>
 
 </LinearLayout>

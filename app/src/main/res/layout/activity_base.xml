@@ -10,23 +10,15 @@
 
     <View
             android:id="@+id/view"
-            android:layout_width="411dp" android:layout_height="66dp"
+            android:layout_width="0dp" android:layout_height="66dp"
             android:background="@color/colorBaseBrown" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view3"/>
-    <View
-            android:id="@+id/view2"
-            android:layout_width="80dp" android:layout_height="62dp"
-            android:layout_marginStart="8dp"
-            android:background="@color/colorLightBrown" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/bt_map" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/view3"
-            app:layout_constraintVertical_bias="0.113"/>
     <FrameLayout
             android:id="@+id/fragment_layout"
-            android:layout_width="388dp" android:layout_height="617dp"
+            android:layout_width="0dp" android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="120dp" android:layout_marginEnd="8dp"
+            android:layout_marginTop="125dp" android:layout_marginEnd="8dp"
             android:background="@color/colorLightBrown" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view3" app:layout_constraintVertical_bias="0.0">
@@ -35,7 +27,7 @@
     </FrameLayout>
     <View
             android:id="@+id/view3"
-            android:layout_width="411dp" android:layout_height="24dp"
+            android:layout_width="0dp" android:layout_height="24dp"
             android:background="@color/colorDarkBrown"
             app:layout_constraintBottom_toTopOf="@+id/view" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent"
@@ -56,18 +48,15 @@
             android:id="@+id/bt_forum"
             android:layout_width="80dp"
             android:layout_height="60dp" android:layout_marginStart="16dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="8dp" android:background="@color/buttonOrange"
-            android:src="@drawable/ic_public_black_24dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toEndOf="@+id/bt_list"
-            app:layout_constraintTop_toTopOf="@+id/view3"/>
+            android:background="@color/buttonOrange" android:src="@drawable/ic_public_black_24dp"
+            app:layout_constraintStart_toEndOf="@+id/bt_list" app:layout_constraintTop_toTopOf="@+id/bt_map"/>
     <ImageButton
             android:id="@+id/bt_list"
             android:layout_width="80dp"
             android:layout_height="60dp" android:layout_marginStart="16dp"
-            android:layout_marginTop="56dp"
-            android:background="@color/buttonOrange" android:src="@drawable/ic_format_list_bulleted_black_50dp"
-            app:layout_constraintStart_toEndOf="@+id/bt_map" app:layout_constraintTop_toTopOf="@+id/view3"/>
+            android:background="@color/buttonOrange"
+            android:src="@drawable/ic_format_list_bulleted_black_50dp" app:layout_constraintStart_toEndOf="@+id/bt_map"
+            app:layout_constraintTop_toTopOf="@+id/bt_map"/>
     <ImageButton
             android:id="@+id/bt_map"
             android:layout_width="80dp"

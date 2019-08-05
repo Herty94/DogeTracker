@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".dogs.NewDog">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <EditText android:id="@+id/et_weight" android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="16dp"
+                  android:hint="Weight"
+                  android:inputType="numberDecimal"
+                  app:layout_constraintEnd_toEndOf="@+id/et_birth" app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintStart_toStartOf="@+id/et_breed"
+                  app:layout_constraintTop_toBottomOf="@+id/et_birth"/>
+        <EditText android:id="@+id/et_breed" android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="16dp"
+                  android:hint="Breed"
+                  android:inputType="text"
+                  app:layout_constraintEnd_toEndOf="@+id/et_name"
+                  app:layout_constraintStart_toStartOf="@+id/et_name"
+                  app:layout_constraintTop_toBottomOf="@+id/et_name"/>
+        <Button
+                android:id="@+id/button2"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                android:layout_marginTop="92dp"
+                android:background="#D5D5D5" android:drawableTop="@drawable/ic_camera_alt_black_24dp"
+                android:paddingTop="65dp"
+                android:text="Import Image" android:textColor="#8D8D8E"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText android:id="@+id/et_birth" android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="16dp"
+                  android:hint="Birthday"
+                  android:inputType="text"
+                  app:layout_constraintEnd_toEndOf="@+id/et_breed"
+                  app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="@+id/et_breed"
+                  app:layout_constraintTop_toBottomOf="@+id/et_breed"/>
+
+        <EditText android:id="@+id/et_name" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="text"
+                  android:layout_marginStart="16dp" android:layout_marginTop="24dp" android:layout_marginEnd="16dp"
+                  android:hint="Name" app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/button2"/>
+
+        <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Notes" android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="@+id/et_weight" app:layout_constraintStart_toStartOf="@+id/et_weight"
+                app:layout_constraintTop_toBottomOf="@+id/et_weight"/>
+        <Button
+                android:id="@+id/bt_newdog"
+                android:layout_width="0dp"
+                android:layout_height="50dp" android:layout_marginTop="16dp"
+                android:background="@color/buttonOrange"
+                android:text="Add new Dog"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/et_notes"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/et_notes"
+                app:layout_constraintTop_toBottomOf="@+id/et_notes"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

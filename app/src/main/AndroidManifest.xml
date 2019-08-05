@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission
-            android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <uses-feature
             android:glEsVersion="0x00020000"
             android:required="true"/>
@@ -18,12 +18,24 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".dogs.NewDog"
+        android:theme="@style/AppTheme"
+        android:label="Add Dog">
+        </activity>
+
+
+
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_api_key"/>
-        <activity android:name=".BaseActivity">
 
+        <activity
+                android:name=".BaseActivity"
+                android:screenOrientation="portrait">
         </activity>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".BaseActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -33,6 +45,7 @@
         </activity>
         <activity android:name=".login.Signin">
         </activity>
+
         <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version"/>

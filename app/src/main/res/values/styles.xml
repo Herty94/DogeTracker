@@ -5,12 +5,13 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorBaseBrown</item>
     </style>
     <style name="BaseButton">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorPureWhite</item>
         <item name="android:background">@color/buttonOrange</item>
     </style>
+
 
 </resources>

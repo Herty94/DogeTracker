@@ -1,6 +1,7 @@
 package company.locahost.itsc.dogetracker
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.os.Bundle
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
+import company.locahost.itsc.dogetracker.dogs.NewDog
 import company.locahost.itsc.dogetracker.fragments.FragmentList
 import company.locahost.itsc.dogetracker.fragments.FragmentMap
 import company.locahost.itsc.dogetracker.login.Signin
@@ -129,6 +131,9 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
             startActivity(Intent(this, Signin::class.java))
         }
     }
+    fun createDog(){
+        startActivity(Intent(this@BaseActivity, NewDog::class.java))
+    }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item != null) {
@@ -155,6 +160,12 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG,"onResume started")
+    }
 
 }
+
+
 
