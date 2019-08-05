@@ -50,8 +50,8 @@ class DogArrayAdapter: ArrayAdapter<Dog>, ListAdapter{
         name.text = "Name: "+ dogs.getName()
         //set price and rental attributes
         breed.text =  "Breed: " + dogs.getBreed()
-        weight.text = "Bed: " + (dogs.getWeight().toString())
-        date.text = "Bath: " + dogs.getDate()
+        weight.text = "Weight: " + (dogs.getWeight().toString())
+        date.text = "BirthDay: " + dogs.getDate()
 
 
         //get the image associated with this property
