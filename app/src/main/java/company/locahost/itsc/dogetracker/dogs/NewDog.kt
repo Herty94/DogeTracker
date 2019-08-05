@@ -75,7 +75,7 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
 
         var dog = Dog(name, breed, weight, date, notes)
-        FragmentList.arrayList.add(name)
+        FragmentList.arrayList.add(dog)
         finish()
     }
 

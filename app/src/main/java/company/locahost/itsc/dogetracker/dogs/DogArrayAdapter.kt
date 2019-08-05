@@ -11,23 +11,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ListAdapter
 import company.locahost.itsc.dogetracker.R
 import kotlinx.android.synthetic.main.listview_item_layout.view.*
 
 
-/*class DogArrayAdapter: ArrayAdapter<Dog> {
+class DogArrayAdapter: ArrayAdapter<Dog>, ListAdapter{
 
-    private lateinit var cont: Context
+    private lateinit var contex: Context
     private lateinit var rentalDogs: List<Dog>
 
     //constructor, call on creation
-    constructor(context: Context, resource: Int, objects: ArrayList<Dog>) : super(context, resource, objects) {
-        this.cont = context
+    constructor(contex: Context, resource: Int, objects: ArrayList<Dog>) : super(contex, resource, objects) {
+        this.contex = contex
         this.rentalDogs = objects
     }
 
+
     //called when rendering the list
-    fun getMyView(position: Int, convertView: View, parent: ViewGroup): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         //get the property we are displaying
         val dogs: Dog = rentalDogs[position]
@@ -44,30 +46,17 @@ import kotlinx.android.synthetic.main.listview_item_layout.view.*
 
 
         //set address and description
-        val completeAddress =
-            dogs.getStreetNumber() + " " + dogs.getStreetName() + ", " + dogs.getSuburb() + ", " + dogs.getState()
-        address.setText(completeAddress)
 
-        //display trimmed excerpt for description
-        val descriptionLength = property.getDescription().length()
-        if (descriptionLength >= 100) {
-            val descriptionTrim = property.getDescription().substring(0, 100) + "..."
-            description.setText(descriptionTrim)
-        } else {
-            description.setText(property.getDescription())
-        }
-
+        name.text = "Name: "+ dogs.getName()
         //set price and rental attributes
-        price.text = "$" + String.valueOf(property.getPrice())
-        bedroom.text = "Bed: " + String.valueOf(property.getBedrooms())
-        bathroom.text = "Bath: " + String.valueOf(property.getBathrooms())
-        carspot.text = "Car: " + String.valueOf(property.getCarspots())
+        breed.text =  "Breed: " + dogs.getBreed()
+        weight.text = "Bed: " + (dogs.getWeight().toString())
+        date.text = "Bath: " + dogs.getDate()
+
 
         //get the image associated with this property
-        val imageID = context.getResources().getIdentifier(property.getImage(), "drawable", context.getPackageName())
-        image.setImageResource(imageID)
 
         return view
     }
 
-}*/
+}

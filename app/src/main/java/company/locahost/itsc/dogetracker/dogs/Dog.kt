@@ -18,4 +18,25 @@ class Dog {
         this.notes = notes
 
     }
+    fun getName():String{
+        return this.name
+    }
+    fun getBreed():String?{
+        return this.breed
+    }
+
+    fun getWeight():Double?{
+        return this.weight
+    }
+
+    fun getDate():String?{
+        return this.date
+    }
+
+    fun getNotes():String?{
+        return this.notes
+    }
+
+
+
 }

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import company.locahost.itsc.dogetracker.BaseActivity
 import company.locahost.itsc.dogetracker.R
 import company.locahost.itsc.dogetracker.dogs.Dog
+import company.locahost.itsc.dogetracker.dogs.DogArrayAdapter
 import company.locahost.itsc.dogetracker.dogs.NewDog
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
@@ -30,12 +31,13 @@ class FragmentList : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
         val view: View =
             inflater.inflate(company.locahost.itsc.dogetracker.R.layout.fragment_list_layout, container, false)
+        registerForContextMenu(view)
 
         contexts=activity!!.applicationContext
 
         arrayList = ArrayList()
-
-        arrayList.add("Bax")
+        val dog = Dog("Bax","špic",24.0,"6.8.2017","")
+        arrayList.add(dog)
 
         ibNewDog = view.ib_addog
         lwDogs = view.lw_dogs
@@ -57,13 +59,13 @@ class FragmentList : Fragment() {
 
 
 
-        val arrayAdapter = ArrayAdapter(contexts,android.R.layout.simple_list_item_1,arrayList)
+        val arrayAdapter: ArrayAdapter<Dog> = DogArrayAdapter(contexts,0, arrayList)
 
         lwDogs.adapter = arrayAdapter
 
     }
     companion object {
-        lateinit var arrayList: ArrayList<String>
+        lateinit var arrayList: ArrayList<Dog>
         val TAG = "FragmentList"
     }
 }
