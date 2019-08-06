@@ -47,7 +47,7 @@ class DogArrayAdapter: ArrayAdapter<Dog>, ListAdapter{
 
         //set address and description
 
-        name.text = "Name: "+ dogs.getName()
+        name.text = ""+ dogs.getName()
         //set price and rental attributes
         breed.text =  "Breed: " + dogs.getBreed()
         weight.text = "Weight: " + (dogs.getWeight().toString())

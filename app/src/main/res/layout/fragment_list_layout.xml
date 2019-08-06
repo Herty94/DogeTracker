@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/colorBackBrown"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:background="@color/colorLightBrown">
 
     <ImageButton android:id="@+id/ib_addog" android:layout_width="match_parent"
                  android:layout_height="46dp"

@@ -45,6 +45,7 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
 
         bt_list.setOnClickListener(this)
         bt_map.setOnClickListener(this)
+        bt_forum.setOnClickListener(this) // TestActivity
 
         signin = Signin()
         tvUser = findViewById(R.id.tv_user)
@@ -55,6 +56,10 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
         checkForLocation()
 
     }
+    /* private fun databaseChecker(){
+        if()
+
+    }*/
     @SuppressLint("MissingPermission")
     private fun checkForLocation(){
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -155,7 +160,7 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
         when (view.id) {
             R.id.bt_map -> createFragment(FragmentMap.TAG)
             R.id.bt_list -> createFragment(FragmentList.TAG)
-
+            R.id.bt_forum -> startActivity(Intent(this@BaseActivity, TestActivity::class.java))
         }
 
     }
