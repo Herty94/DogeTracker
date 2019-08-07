@@ -4,15 +4,15 @@ import java.util.*
 
 class Dog {
 
-    private var name: String
-    private var breed: String?
-    private var weight: Double?
-    private var date: String?
-    private var notes: String?
+    private var name: String =""
+    private var breed: String? =""
+    private var weight: Double? =0.0
+    private var date: String?=""
+    private var notes: String?=""
 
 
 
-    constructor(name: String, breed: String?, weight: Double?, date: String?, notes: String?) {
+    constructor(breed: String?, date: String? ,name: String,  notes: String?, weight: Double?) {
         this.name = name
         this.breed = breed
         this.weight = weight
@@ -22,6 +22,7 @@ class Dog {
 
 
     }
+    constructor(){}
     fun getName():String{
         return this.name
     }

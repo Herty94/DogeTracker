@@ -1,13 +1,14 @@
 package company.locahost.itsc.dogetracker.dogs
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.DatePicker
+import androidx.appcompat.app.AppCompatActivity
 import company.locahost.itsc.dogetracker.R
 import company.locahost.itsc.dogetracker.fragments.FragmentList
+import company.locahost.itsc.dogetracker.profile.createDogData
 import kotlinx.android.synthetic.main.activity_new_dog.*
 import java.util.*
 
@@ -58,7 +59,7 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
         val id: Int = item.itemId
 
-        if(id == android.R.id.home)
+        if (id == android.R.id.home)
             this.finish()
         return super.onOptionsItemSelected(item)
     }
@@ -73,8 +74,8 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         Log.i(TAG, "date: " + date)
 
 
-
-        var dog = Dog(name, breed, weight, date, notes)
+        var dog = Dog(breed, date, name, notes, weight)
+        createDogData(dog)
         FragmentList.arrayList.add(dog)
         finish()
     }

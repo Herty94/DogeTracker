@@ -129,7 +129,10 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
             Log.i(TAG, "User is signed In " + user.displayName)
             if (user.email == null) ConstantsDT.userEmail = "Anonym"
             else ConstantsDT.userEmail = "" + user.email
+            if (user.displayName == null) ConstantsDT.userName = "Anonym"
+            else ConstantsDT.userName= "" + user.displayName
             tvUser.setText(ConstantsDT.userEmail)
+
 
 
         } else {

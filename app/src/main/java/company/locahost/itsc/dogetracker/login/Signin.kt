@@ -30,6 +30,7 @@ import company.locahost.itsc.dogetracker.BaseActivity
 import company.locahost.itsc.dogetracker.ConstantsDT
 import company.locahost.itsc.dogetracker.MainActivity
 import company.locahost.itsc.dogetracker.R
+import company.locahost.itsc.dogetracker.profile.createUserData
 
 
 class Signin : AppCompatActivity(), View.OnClickListener {
@@ -171,8 +172,10 @@ class Signin : AppCompatActivity(), View.OnClickListener {
 
     //BASE ACTIVITY STARTER ----------------------------------------------->
     private fun startBaseActivity(){
+
         val intent = Intent(this,BaseActivity::class.java)
         ConstantsDT.userAuth = mAuth
+        createUserData(mAuth.uid)
         startActivity(intent)
 
     }
