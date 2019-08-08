@@ -41,6 +41,21 @@ class Dog {
     fun getNotes():String?{
         return this.notes
     }
+    fun setName(name: String){
+        this.name = name
+    }
+    fun setBreed(breed: String){
+        this.breed = breed
+    }
+    fun setWeight(weight: Double){
+        this.weight = weight
+    }
+    fun setDate(date: String){
+        this.date = date
+    }
+    fun setNotes(notes: String){
+        this.notes = notes
+    }
 
 
 

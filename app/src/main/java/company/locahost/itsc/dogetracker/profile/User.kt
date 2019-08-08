@@ -14,6 +14,7 @@ import company.locahost.itsc.dogetracker.fragments.FragmentList
 private var firebasedatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 private var myRef: DatabaseReference = firebasedatabase.getReference()
 private val TAG ="User"
+private var key: String? = null
 
 fun createUserData(userId: String?){
 
@@ -24,30 +25,28 @@ fun createUserData(userId: String?){
 }
 fun createDogData(dog: Dog){
 
-    val key = myRef.child("user_dogs").push().key
+    key = myRef.child("user_dogs").push().key
     myRef.child("user_dogs").child(ConstantsDT.userAuth.uid!!).child(key!!).setValue(dog)
 
 }
-fun addDogData(){
+fun deleteDogData(dog: Dog){
 
-    val postListener = object : ValueEventListener {
+    Log.i(TAG,"Query: "+myRef.child("user_dogs"))
+    var query: Query = myRef.child("user_dogs").child(ConstantsDT.userAuth.uid!!)
+    query.addListenerForSingleValueEvent(object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            // Get Post object and use the values to update the UI
-            for(ds in dataSnapshot.child("user_dogs").child(ConstantsDT.userAuth.uid!!).children){
-                Log.i(TAG,"Snapshot: " )
-                FragmentList.arrayList.add(ds.getValue(Dog::class.java)!!)
-
-                //FragmentList.arrayList.add(ds.child(ds.key!!).getValue(Dog::class.java)!!)
+            for (appleSnapshot in dataSnapshot.children) {
+                if(appleSnapshot.child(appleSnapshot.key!!).child("name").getValue(true)== dog.getName()){
+                    myRef.child(appleSnapshot.key!!).removeValue()
+                }
             }
-
-           //
         }
 
         override fun onCancelled(databaseError: DatabaseError) {
-            // Getting Post failed, log a message
-            Log.w(FragmentList.TAG, "loadPost:onCancelled", databaseError.toException())
-            // ...
+            Log.e(TAG, "onCancelled", databaseError.toException())
         }
-    }
-        myRef.addValueEventListener(postListener)
+    })
+
+
 }
+

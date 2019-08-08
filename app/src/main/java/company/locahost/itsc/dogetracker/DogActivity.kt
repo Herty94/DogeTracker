@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import company.locahost.itsc.dogetracker.dogs.Dog
 import company.locahost.itsc.dogetracker.fragments.FragmentList.Companion.arrayList
+import company.locahost.itsc.dogetracker.profile.deleteDogData
 import kotlinx.android.synthetic.main.activity_dog.*
 
 class DogActivity : AppCompatActivity() {
@@ -23,6 +24,9 @@ class DogActivity : AppCompatActivity() {
         dog = arrayList.get(i)
 
         dog.getName()
+        bt_delete.setOnClickListener{
+            deleteDogData(dog)
+        }
 
     }
 

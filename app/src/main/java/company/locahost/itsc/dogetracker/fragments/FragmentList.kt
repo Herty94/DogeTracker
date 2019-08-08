@@ -20,7 +20,7 @@ import company.locahost.itsc.dogetracker.R
 import company.locahost.itsc.dogetracker.dogs.Dog
 import company.locahost.itsc.dogetracker.dogs.DogArrayAdapter
 import company.locahost.itsc.dogetracker.dogs.NewDog
-import company.locahost.itsc.dogetracker.profile.addDogData
+
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 import kotlinx.android.synthetic.main.fragment_list_layout.view.*
