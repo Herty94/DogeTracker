@@ -12,10 +12,9 @@ import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.ListView
 import androidx.fragment.app.Fragment
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import company.locahost.itsc.dogetracker.BaseActivity
+import company.locahost.itsc.dogetracker.ConstantsDT
 import company.locahost.itsc.dogetracker.R
 import company.locahost.itsc.dogetracker.dogs.Dog
 import company.locahost.itsc.dogetracker.dogs.DogArrayAdapter
@@ -29,8 +28,12 @@ import kotlinx.android.synthetic.main.fragment_list_layout.view.lw_dogs
 class FragmentList : Fragment() {
 
     private lateinit var lwDogs: ListView
-
+    private lateinit var contexts: Context
     private lateinit var ibNewDog: ImageButton
+
+    private var firebasedatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private var myRef: DatabaseReference = firebasedatabase.getReference()
+
     companion object {
         lateinit var arrayList: ArrayList<Dog>
         val TAG = "FragmentList"
@@ -47,6 +50,9 @@ class FragmentList : Fragment() {
             inflater.inflate(company.locahost.itsc.dogetracker.R.layout.fragment_list_layout, container, false)
         registerForContextMenu(view)
 
+        Log.i(TAG,"OnCreateView context creating")
+
+        contexts= activity!!.baseContext
 
 
 
@@ -59,11 +65,37 @@ class FragmentList : Fragment() {
         return view
 
     }
+    fun addDogData(){
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                arrayList.clear()
+                for(ds in dataSnapshot.child("user_dogs").child(ConstantsDT.userAuth.uid!!).children){
+                    Log.i(TAG,"Snapshot: " )
+                    FragmentList.arrayList.add(ds.getValue(Dog::class.java)!!)
+
+                    //FragmentList.arrayList.add(ds.child(ds.key!!).getValue(Dog::class.java)!!)
+                }
+                createArrayList()
+                //
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(FragmentList.TAG, "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        }
+        myRef.addValueEventListener(postListener)
+    }
 
 
     override fun onResume() {
         super.onResume()
+        Log.i(TAG,"onResume started")
         addDogData()
+
 
     }
     private fun createDogAct(){
@@ -72,6 +104,8 @@ class FragmentList : Fragment() {
 
     fun createArrayList(){
 
+
+        Log.d(TAG,"context: "+ contexts)
         val arrayAdapter: ArrayAdapter<Dog> = DogArrayAdapter(contexts,0, arrayList)
 
         lwDogs.adapter = arrayAdapter

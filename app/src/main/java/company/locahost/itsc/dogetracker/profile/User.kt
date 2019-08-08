@@ -39,7 +39,6 @@ fun addDogData(){
 
                 //FragmentList.arrayList.add(ds.child(ds.key!!).getValue(Dog::class.java)!!)
             }
-            FragmentList().createArrayList()
 
            //
         }
