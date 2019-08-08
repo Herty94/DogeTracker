@@ -108,7 +108,6 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
         popup.setOnMenuItemClickListener(this)
         popup.inflate(R.menu.base_menu)
         popup.show()
-
     }
 
     private fun checkCurrentUser() {

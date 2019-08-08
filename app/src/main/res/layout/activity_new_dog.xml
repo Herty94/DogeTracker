@@ -41,7 +41,7 @@
                   android:layout_height="wrap_content"
                   android:layout_marginTop="16dp"
                   android:hint="Birthday"
-                  android:inputType="text"
+                  android:inputType="date"
                   app:layout_constraintEnd_toEndOf="@+id/et_breed"
                   app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="@+id/et_breed"
                   app:layout_constraintTop_toBottomOf="@+id/et_breed"/>

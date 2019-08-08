@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import company.locahost.itsc.dogetracker.BaseActivity
 import company.locahost.itsc.dogetracker.ConstantsDT
+import company.locahost.itsc.dogetracker.DogActivity
 import company.locahost.itsc.dogetracker.R
 import company.locahost.itsc.dogetracker.dogs.Dog
 import company.locahost.itsc.dogetracker.dogs.DogArrayAdapter
@@ -24,8 +25,9 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 import kotlinx.android.synthetic.main.fragment_list_layout.view.*
 import kotlinx.android.synthetic.main.fragment_list_layout.view.lw_dogs
+import java.io.Serializable
 
-class FragmentList : Fragment() {
+class FragmentList : Fragment(){
 
     private lateinit var lwDogs: ListView
     private lateinit var contexts: Context
@@ -42,6 +44,7 @@ class FragmentList : Fragment() {
         super.onCreate(savedInstanceState)
         arrayList = ArrayList()
 
+
     }
 
 
@@ -52,15 +55,23 @@ class FragmentList : Fragment() {
 
         Log.i(TAG,"OnCreateView context creating")
 
+
         contexts= activity!!.baseContext
-
-
 
         val dog = Dog("špic","6.8.2017","Bax","",24.0)
         arrayList.add(dog)
 
         ibNewDog = view.ib_addog
         lwDogs = view.lw_dogs
+
+        lwDogs.setOnItemClickListener { adapterView, view, i, l ->
+            Log.i(TAG,"position: "+i+" id: "+l+" dog: "+arrayList.get(i))
+            var intent = Intent(activity!!, DogActivity::class.java)
+            intent.putExtra("arrayListId",i)
+            startActivity(intent)
+
+
+        }
         ibNewDog.setOnClickListener { createDogAct() }
         return view
 
@@ -103,6 +114,7 @@ class FragmentList : Fragment() {
     }
 
     fun createArrayList(){
+
 
 
         Log.d(TAG,"context: "+ contexts)

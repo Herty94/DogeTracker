@@ -15,10 +15,6 @@ class TestActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("users")
-
-        myRef.setValue("Hello, World!")
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 

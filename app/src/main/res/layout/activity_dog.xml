@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DogActivity">
+
+    <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="130dp" android:layout_height="129dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:src="@drawable/doge"/>
+    <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp" android:text="Meno"
+            app:layout_constraintStart_toEndOf="@+id/imageView3" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:id="@+id/tv_breed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="rasa"
+            app:layout_constraintStart_toStartOf="@+id/tv_name" app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
+    <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:text="datum narodenia"
+            app:layout_constraintStart_toStartOf="@+id/tv_name" app:layout_constraintTop_toBottomOf="@+id/tv_breed"/>
+    <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:text="váha"
+            app:layout_constraintStart_toStartOf="@+id/tv_name" app:layout_constraintTop_toBottomOf="@+id/tv_date"/>
+    <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp" android:text="Popis"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+    <Button
+            android:id="@+id/button3"
+            android:layout_width="210dp"
+            android:layout_height="49dp" android:layout_marginStart="16dp"
+            android:layout_marginBottom="24dp" android:text="Priložiť dokument"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
