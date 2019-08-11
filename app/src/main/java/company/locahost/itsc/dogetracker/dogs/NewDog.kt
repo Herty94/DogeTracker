@@ -11,6 +11,19 @@ import company.locahost.itsc.dogetracker.fragments.FragmentList
 import company.locahost.itsc.dogetracker.profile.createDogData
 import kotlinx.android.synthetic.main.activity_new_dog.*
 import java.util.*
+import android.provider.MediaStore
+import android.graphics.Bitmap
+import android.app.Activity
+import android.content.Intent
+import java.io.IOException
+
+import android.widget.Toast
+import android.graphics.BitmapFactory
+
+import java.io.FileNotFoundException
+
+
+
 
 
 class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
@@ -24,6 +37,8 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     private var weight: Double? = null
     private var date: String? = null
     private var notes: String? = null
+
+    private val RESULT_LOAD_IMG: Int = 2205
 
     private var dayFinal: Int = 0
     private var monthFinal: Int = 0
@@ -43,8 +58,31 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
         et_birth.setOnClickListener { pickDate() }
         bt_newdog.setOnClickListener { createDog() }
+        bt_photo.setOnClickListener{
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG)}
 
 
+    }
+    override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(reqCode, resultCode, data)
+
+
+        if (resultCode == Activity.RESULT_OK) {
+            try {
+                val imageUri = data!!.data
+                val imageStream = contentResolver.openInputStream(imageUri!!)
+                val selectedImage = BitmapFactory.decodeStream(imageStream)
+                image_view.setImageBitmap(selectedImage)
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show()
+            }
+
+        } else {
+            Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
