@@ -35,9 +35,11 @@ fun deleteDogData(dog: Dog){
     var query: Query = myRef.child("user_dogs").child(ConstantsDT.userAuth.uid!!)
     query.addListenerForSingleValueEvent(object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            for (appleSnapshot in dataSnapshot.children) {
-                if(appleSnapshot.child(appleSnapshot.key!!).child("name").getValue(true)== dog.getName()){
-                    myRef.child(appleSnapshot.key!!).removeValue()
+            for (appleSnapshot in dataSnapshot.children){
+                Log.i(TAG,"delete: "+dataSnapshot.child(appleSnapshot.key!!).child("name").getValue(true))
+                if(dataSnapshot.child(appleSnapshot.key!!).child("name").getValue(true)== dog.getName()){
+                    Log.i(TAG,"deleted: " +dog.getName())
+                    myRef.child(appleSnapshot.key!!).updateChildren(null)
                 }
             }
         }
