@@ -3,6 +3,8 @@ package company.locahost.itsc.dogetracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.net.toUri
+import com.squareup.picasso.Picasso
 import company.locahost.itsc.dogetracker.dogs.Dog
 import company.locahost.itsc.dogetracker.fragments.FragmentList.Companion.arrayList
 import company.locahost.itsc.dogetracker.profile.deleteDogData
@@ -36,6 +38,7 @@ class DogActivity : AppCompatActivity() {
         tv_breed.setText(dog.getBreed())
         tv_date.setText(dog.getDate())
         tv_note.setText(dog.getNotes())
+        Picasso.get().load(dog.getImageUrl()).into(iv_dog)
 
     }
 

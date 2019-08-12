@@ -6,12 +6,14 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.app.Activity
 import android.content.Context
+import android.media.Image
 import androidx.core.content.ContextCompat.getSystemService
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ListAdapter
+import com.squareup.picasso.Picasso
 import company.locahost.itsc.dogetracker.R
 import kotlinx.android.synthetic.main.listview_item_layout.view.*
 
@@ -42,6 +44,7 @@ class DogArrayAdapter: ArrayAdapter<Dog>, ListAdapter{
         val breed: TextView = view.tv_breed
         val weight: TextView = view.tv_weight
         val date: TextView = view.tv_date
+        val imageUrl :ImageView = view.iv_dog
 
 
 
@@ -52,6 +55,7 @@ class DogArrayAdapter: ArrayAdapter<Dog>, ListAdapter{
         breed.text =  "Breed: " + dogs.getBreed()
         weight.text = "Weight: " + (dogs.getWeight().toString())
         date.text = "BirthDay: " + dogs.getDate()
+        Picasso.get().load(dogs.getImageUrl()).into(imageUrl)
 
 
         //get the image associated with this property

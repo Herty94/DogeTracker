@@ -58,7 +58,7 @@ class FragmentList : Fragment(){
 
         contexts= activity!!.baseContext
 
-        val dog = Dog("špic","6.8.2017","Bax","",24.0)
+        val dog = Dog("špic","6.8.2017","","Bax","",24.0)
         arrayList.add(dog)
 
         ibNewDog = view.ib_addog

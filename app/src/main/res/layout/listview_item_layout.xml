@@ -6,7 +6,7 @@
               android:layout_height="match_parent">
 
     <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/iv_dog"
             android:layout_width="136dp" android:layout_height="105dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" android:layout_marginStart="0dp"
@@ -16,7 +16,7 @@
             android:id="@+id/tv_dog_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/iv_dog"
             android:textSize="20dp"
             android:text="Peso"/>
     <TextView
@@ -24,17 +24,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_below="@+id/tv_dog_name"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="6dp" android:layout_toEndOf="@+id/imageView2" android:text="breed"/>
+            android:layout_marginTop="6dp" android:layout_toEndOf="@+id/iv_dog" android:text="breed"/>
     <TextView
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_below="@+id/tv_breed"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="7dp" android:layout_toEndOf="@+id/imageView2" android:text="weight"/>
+            android:layout_marginTop="7dp" android:layout_toEndOf="@+id/iv_dog" android:text="weight"/>
     <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_below="@+id/tv_weight"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="7dp" android:layout_toEndOf="@+id/imageView2" android:text="Birthday"/>
+            android:layout_marginTop="7dp" android:layout_toEndOf="@+id/iv_dog" android:text="Birthday"/>
 </RelativeLayout>

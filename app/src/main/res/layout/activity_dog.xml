@@ -8,7 +8,7 @@
         tools:context=".DogActivity">
 
     <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/iv_dog"
             android:layout_width="130dp" android:layout_height="129dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_marginStart="32dp"
             android:layout_marginTop="16dp" android:text="Meno"
-            app:layout_constraintStart_toEndOf="@+id/imageView3" app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/iv_dog" app:layout_constraintTop_toTopOf="parent"/>
     <TextView
             android:id="@+id/tv_breed"
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:layout_marginStart="16dp"
             android:layout_marginTop="24dp" android:text="Popis"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/iv_dog"/>
     <Button
             android:id="@+id/button3"
             android:layout_width="210dp"

@@ -1,26 +1,31 @@
 package company.locahost.itsc.dogetracker.dogs
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Continuation
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import com.google.android.gms.tasks.Task
 import company.locahost.itsc.dogetracker.R
 import company.locahost.itsc.dogetracker.fragments.FragmentList
 import company.locahost.itsc.dogetracker.profile.createDogData
 import kotlinx.android.synthetic.main.activity_new_dog.*
-import java.util.*
-import android.provider.MediaStore
-import android.graphics.Bitmap
-import android.app.Activity
-import android.content.Intent
-import java.io.IOException
-
-import android.widget.Toast
-import android.graphics.BitmapFactory
-
+import java.io.File
 import java.io.FileNotFoundException
+import java.util.*
+import androidx.annotation.NonNull
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 
 
 
@@ -44,6 +49,10 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     private var monthFinal: Int = 0
     private var yearFinal: Int = 0
 
+    private val storage = FirebaseStorage.getInstance()
+    private val storageRef = storage.reference
+    private lateinit var url: String
+
     private val TAG = "NewDog"
 
 
@@ -58,21 +67,40 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
         et_birth.setOnClickListener { pickDate() }
         bt_newdog.setOnClickListener { createDog() }
-        bt_photo.setOnClickListener{
+        bt_photo.setOnClickListener {
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
-            startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG)}
+            startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG)
+        }
 
 
     }
+
     override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(reqCode, resultCode, data)
 
 
         if (resultCode == Activity.RESULT_OK) {
             try {
+                bt_photo.visibility = View.GONE
                 val imageUri = data!!.data
+
                 val imageStream = contentResolver.openInputStream(imageUri!!)
+                Log.i(TAG, "Image Uri: " + imageUri.lastPathSegment)
+                val file = Uri.fromFile(File(imageUri.lastPathSegment))
+                val imageRef = storageRef.child("dog_photos/${file.lastPathSegment}")
+                val uploadTask = imageRef.putFile(imageUri)
+                imageRef.downloadUrl.addOnSuccessListener(OnSuccessListener<Uri> { uri ->
+                    // Got the uri
+                    url= uri.toString()
+                    // Wrap with Uri.parse() when retrieving
+                    Log.i(TAG, "url: " + url )
+
+                }).addOnFailureListener(OnFailureListener {
+                    // Handle any errors
+                })
+
+
                 val selectedImage = BitmapFactory.decodeStream(imageStream)
                 image_view.setImageBitmap(selectedImage)
             } catch (e: FileNotFoundException) {
@@ -112,7 +140,7 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         Log.i(TAG, "date: " + date)
 
 
-        var dog = Dog(breed, date, name, notes, weight)
+        var dog = Dog(breed, date,url, name, notes, weight)
         createDogData(dog)
         FragmentList.arrayList.add(dog)
         finish()
@@ -132,4 +160,8 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
 
     }
+}
+
+class Task<T> {
+
 }
