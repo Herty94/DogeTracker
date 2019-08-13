@@ -1,6 +1,7 @@
 package company.locahost.itsc.dogetracker.fragments
 
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -110,7 +111,16 @@ class FragmentList : Fragment(){
 
     }
     private fun createDogAct(){
-        startActivity(Intent(activity, NewDog::class.java))
+        var child = Intent(activity,NewDog::class.java)
+        startActivityForResult(child,2001)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1){
+            if(resultCode == RESULT_OK)
+            arrayList.add(data!!.getParcelableExtra("dog"))
+        }
     }
 
     fun createArrayList(){

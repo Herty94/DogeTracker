@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseError
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import company.locahost.itsc.dogetracker.ConstantsDT
 import company.locahost.itsc.dogetracker.dogs.Dog
 import company.locahost.itsc.dogetracker.fragments.FragmentList
@@ -15,6 +16,8 @@ private var firebasedatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 private var myRef: DatabaseReference = firebasedatabase.getReference()
 private val TAG ="User"
 private var key: String? = null
+private val storage = FirebaseStorage.getInstance()
+private val storageRef = storage.reference
 
 fun createUserData(userId: String?){
 
@@ -38,8 +41,8 @@ fun deleteDogData(dog: Dog){
             for (appleSnapshot in dataSnapshot.children){
                 Log.i(TAG,"delete: "+dataSnapshot.child(appleSnapshot.key!!).child("name").getValue(true))
                 if(dataSnapshot.child(appleSnapshot.key!!).child("name").getValue(true)== dog.getName()){
-                    Log.i(TAG,"deleted: " +dog.getName())
-                    myRef.child(appleSnapshot.key!!).updateChildren(null)
+                        Log.i(TAG, "deleted: " + dog.getName())
+                        myRef.child("user_dogs").child(ConstantsDT.userAuth.uid!!).child(appleSnapshot.key!!).removeValue()
                 }
             }
         }

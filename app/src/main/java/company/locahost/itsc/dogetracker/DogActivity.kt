@@ -65,7 +65,8 @@ class DogActivity : AppCompatActivity() , View.OnClickListener{
                 else TODO("dokončiť editovanie psa")
             }
             R.id.bt_delete -> {
-                deleteDogData(dog)}
+                deleteDogData(dog)
+                finish()}
         }
     }
 

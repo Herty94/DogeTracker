@@ -142,7 +142,11 @@ class NewDog : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
         var dog = Dog(breed, date,url, name, notes, weight)
         createDogData(dog)
-        FragmentList.arrayList.add(dog)
+        //FragmentList.arrayList.add(dog)
+        intent = Intent()
+        intent.putExtra("dog",dog)
+        setResult(RESULT_OK,intent)
+
         finish()
     }
 
