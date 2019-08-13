@@ -14,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
+import com.google.maps.model.Distance
 import company.locahost.itsc.dogetracker.dogs.NewDog
 import company.locahost.itsc.dogetracker.fragments.FragmentList
 import company.locahost.itsc.dogetracker.fragments.FragmentMap
 import company.locahost.itsc.dogetracker.login.Signin
+import company.locahost.itsc.dogetracker.map.DistanceCounter
 import kotlinx.android.synthetic.main.activity_base.*
+import kotlinx.android.synthetic.main.fragment_menu_layout.*
 
 
 class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, View.OnClickListener {
@@ -51,32 +54,18 @@ class BaseActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Vie
         tvUser = findViewById(R.id.tv_user)
         ConstantsDT.userAuth = FirebaseAuth.getInstance()
         createFragment(FragmentMap.TAG)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        val counter = DistanceCounter(fusedLocationClient)
 
-        checkForLocation()
+        ib_start.setOnClickListener{ Thread(counter).start()}
+
 
     }
     /* private fun databaseChecker(){
         if()
 
     }*/
-    @SuppressLint("MissingPermission")
-    private fun checkForLocation(){
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-
-
-        if (newLocation == null) {
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-
-                    newLocation = location
-
-                }
-        }
-        else{}
-
-    }
 
 
     private fun createFragment(tag: String) {
